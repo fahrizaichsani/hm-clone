@@ -1,5 +1,5 @@
 import Banner from "@/components/banner";
-// import DiscountBanner from "@/components/discountBanner";
+import DiscountBanner from "@/components/discountBanner";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import React from "react";
@@ -26,13 +26,13 @@ export default function Page() {
     content: "Laborum consequat deserunt ullamco culpa tempor proident aliquip incididunt voluptate amet veniam incididunt."
   };
   const discountBanner: DiscountBannerProps ={
-    url: ''
+    url: 'https://d29c1z66frfv6c.cloudfront.net/pub/media/banner/24/01/W05-Special-25-50-Off-Bhs.jpg'
   }
  
   return (
     <>
       <Navbar />
-      {/* <DiscountBanner {...discountBanner}/> */}
+      <DiscountBanner {...discountBanner}/>
       <Banner {...bannerOne} />
       <Banner {...bannerTwo} />
       <Footer />
