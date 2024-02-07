@@ -24,7 +24,9 @@ export default function Navbar() {
               </button>
             </Link>
             <span>Indonesia</span>
+            <Link href={"/wishlist"}>
             <span>Favorit</span>
+            </Link>
             <span>Tas Belanja</span>
           </div>
         </div>
@@ -35,7 +37,7 @@ export default function Navbar() {
           <span>Baby</span>
           <span>Anak</span>
           <span>Sport</span>
-          <div className="absolute border-b-[1px] border-black right-8 text-sm">
+          <div className="absolute border-b-[1px] border-black right-8 text-sm font-sans">
             <input
               type="text"
               placeholder="Cari produk"

@@ -36,7 +36,7 @@ export default function Home() {
       <DiscountBanner {...discountBanner} />
       <Banner {...bannerOne} />
       <Banner {...bannerTwo} />
-      <div className="flex flex-wrap justify-center items-center gap-[2px] pl-[260px] pr-[260px]">
+      <div className="flex flex-wrap justify-center items-center gap-[8px] pl-[260px] pr-[260px]">
         <Card />
         <Card />
         <Card />
