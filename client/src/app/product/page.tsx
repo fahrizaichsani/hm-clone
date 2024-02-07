@@ -1,6 +1,7 @@
 import Card from "@/components/card";
 import Sidebar from "@/components/sidebar";
 import React from "react";
+import Link from "next/link";
 
 interface Props {
   url: string;
@@ -16,11 +17,14 @@ export default function Product() {
   };
   return (
     <>
-      <div className="flex flex-row mt-[30px] gap-[50px]">
+      <div className="flex flex-row mt-[30px]">
         <div>
           <Sidebar />
         </div>
-        <div className="flex flex-wrap gap-[4px]">
+        <div className="flex flex-wrap gap-[4px] ml-[80px]">
+          <Link href={"/product/detail-product"}>
+          <Card />
+          </Link>
           <Card />
           <Card />
           <Card />
@@ -31,8 +35,7 @@ export default function Product() {
           <Card />
           <Card />
           <Card />
-          <Card />
-          <Card />
+          <Card />  
         </div>
       </div>
     </>
