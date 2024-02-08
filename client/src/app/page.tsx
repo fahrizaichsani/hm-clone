@@ -1,9 +1,9 @@
 import Banner from "@/components/banner";
-import Card from "@/components/card";
 import DiscountBanner from "@/components/discountBanner";
 import React from "react";
 import Link from "next/link";
 import { Product } from "@/types";
+import FeatureProducts from "@/components/featured-products";
 
 async function getData(): Promise<Product[]> {
   const res = await fetch("http://localhost:4002/products");
@@ -52,7 +52,7 @@ export default async function Home() {
       <Banner {...bannerTwo} />
       <div className="flex flex-wrap justify-center items-center gap-[8px] pl-[260px] pr-[260px]">
         {sliceData.map((value) => {
-          return <Card value={value} />;
+          return <FeatureProducts value={value} />;
         })}
       </div>
       <div>
