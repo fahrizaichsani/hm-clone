@@ -1,13 +1,10 @@
 export interface Product {
   id: number
   name: string
-  slug: string
-  description: string
-  excerpt: string
-  price: number
-  tags: string[]
+  price: string
   thumbnail: string
-  images: string[]
+  image: string[]
+  miniImg: string
   createdAt: string
   updatedAt: string
 }

@@ -2,10 +2,9 @@ import Card from "@/components/card";
 import Sidebar from "@/components/sidebar";
 import React from "react";
 import { Product } from "@/types";
-import Link from "next/link";
 
 async function getData(): Promise<Product[]> {
-  const res = await fetch("http://localhost:3010/products");
+  const res = await fetch("http://localhost:4002/products");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

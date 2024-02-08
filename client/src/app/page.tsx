@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Product } from "@/types";
 
 async function getData(): Promise<Product[]> {
-  const res = await fetch("http://localhost:3004/products");
+  const res = await fetch("http://localhost:4002/products");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
