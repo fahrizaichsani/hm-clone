@@ -1,20 +1,22 @@
 import Card from "@/components/card";
 import Sidebar from "@/components/sidebar";
 import React from "react";
+import { Product } from "@/types";
 import Link from "next/link";
 
-interface Props {
-  url: string;
-  title: string;
-  content: string;
+async function getData(): Promise<Product[]> {
+  const res = await fetch("http://localhost:3010/products");
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return await res.json();
 }
 
-export default function Product() {
-  const hero: Props = {
-    url: "https://images.unsplash.com/photo-1519748771451-a94c596fad67?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    title: "",
-    content: "",
-  };
+export default async function Product() {
+  const data = await getData();
+
   return (
     <>
       <div className="flex flex-row mt-[30px]">
@@ -22,20 +24,9 @@ export default function Product() {
           <Sidebar />
         </div>
         <div className="flex flex-wrap gap-[4px] ml-[80px]">
-          <Link href={"/product/detail-product"}>
-          <Card />
-          </Link>
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />  
+          {data.map((value) => {
+            return <Card value={value}/>;
+          })}
         </div>
       </div>
     </>

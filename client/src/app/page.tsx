@@ -3,6 +3,17 @@ import Card from "@/components/card";
 import DiscountBanner from "@/components/discountBanner";
 import React from "react";
 import Link from "next/link";
+import { Product } from "@/types";
+
+async function getData(): Promise<Product[]> {
+  const res = await fetch("http://localhost:3004/products");
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
 
 interface BannerProps {
   url: string;
@@ -14,7 +25,9 @@ interface DiscountBannerProps {
   url: string;
 }
 
-export default function Home() {
+export default async function Home() {
+  const data = await getData();
+
   const bannerOne: BannerProps = {
     url: "https://images.unsplash.com/photo-1538329972958-465d6d2144ed?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     title: "Hello...",
@@ -37,16 +50,9 @@ export default function Home() {
       <Banner {...bannerOne} />
       <Banner {...bannerTwo} />
       <div className="flex flex-wrap justify-center items-center gap-[8px] pl-[260px] pr-[260px]">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {data.map((value) => {
+          return <Card value={value} />;
+        })}
       </div>
       <div>
         <Link

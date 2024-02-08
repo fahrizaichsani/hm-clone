@@ -1,17 +1,18 @@
+import { Product } from "@/types";
 import React from "react";
+import Link from "next/link";
 
-export default function Card() {
+export default function Card({ value }: { value: Product }) {
   return (
     <>
       <div className="flex flex-col w-[300px] pt-[20px] pb-[20px]">
-        <img
-          src="https://d29c1z66frfv6c.cloudfront.net/pub/media/catalog/product/medium/ed4efaa6bf08c8312d27ff02ac321861bfc7268b_xxl-1.jpg"
-          alt="card"
-        />
+        <Link href={"/products/" + value.id}>
+        <img src={value.thumbnail} alt="card" />
         <div className="font-sans flex flex-col">
-          <span>Slim Fit Linen jacket</span>
-          <span>Rp 1.199.000</span>
+          <span>{value.name}</span>
+          <span>{value.price}</span>
         </div>
+        </Link>
       </div>
     </>
   );
