@@ -38,7 +38,7 @@ export default function Product() {
         </div>
         <div className="flex flex-wrap gap-[4px] ml-[80px]">
           {product?.map((value) => {
-            return <Card value={value} key={value.id}/>;
+            return <Card value={value} key={value._id}/>;
           })}
         </div>
       </div>

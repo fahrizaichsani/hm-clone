@@ -1,5 +1,5 @@
 export interface Product {
-  id: string;
+  _id: string;
   name: string;
   slug: string;
   description: string;
@@ -12,7 +12,3 @@ export interface Product {
   updatedAt: string;
 }
 
-export interface UserLogin {
-  email: string
-  password: string
-}
