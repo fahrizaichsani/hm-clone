@@ -1,21 +1,27 @@
 "use client"
 import Card from "@/components/card";
 import Sidebar from "@/components/sidebar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "@/types";
 
-async function getData(): Promise<Product[]> {
-  const res = await fetch("http://localhost:4003/products");
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+
+export default function Product() {
+  const [product, setProduct] = useState<Product[]>()
+  async function getData() {
+    const res = await fetch("http://localhost:4003/products");
+  
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+  
+    const resJson: Product[] = await res.json();
+    setProduct(resJson)
   }
-
-  return await res.json();
-}
-
-export default async function Product() {
-  const data = await getData();
+  
+  useEffect(() => {
+    getData()
+  }, [])
 
   return (
     <>
@@ -31,7 +37,7 @@ export default async function Product() {
           <Sidebar />
         </div>
         <div className="flex flex-wrap gap-[4px] ml-[80px]">
-          {data.map((value) => {
+          {product?.map((value) => {
             return <Card value={value} key={value.id}/>;
           })}
         </div>
