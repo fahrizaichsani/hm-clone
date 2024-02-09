@@ -1,5 +1,5 @@
 import AddWishlist from "@/components/add-to-wishlist";
-import { convertToRupiah } from "@/helpers/convertRupiah";
+import { convertToRupiah } from "@/db/helpers/convertRupiah";
 import { Product } from "@/types";
 import React from "react";
 
@@ -34,7 +34,9 @@ export default async function DetailProduct({ params }: DetailProductProps) {
                 <span className="font-semibold">{data.name}</span>
                 <AddWishlist />
               </div>
-              <span className="text-xl mt-[8px]">{convertToRupiah(data.price)}</span>
+              <span className="text-xl mt-[8px]">
+                {convertToRupiah(data.price)}
+              </span>
               <div className="text-md flex gap-[8px]">
                 <span className="mt-[15px]">#{data.tags[0]}</span>
                 <span className="mt-[15px]">#{data.tags[1]}</span>

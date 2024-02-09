@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { Product } from "@/types";
 import React from "react";
 import Link from "next/link";
 import AddWishlist from "./add-to-wishlist";
-import { convertToRupiah } from "@/helpers/convertRupiah";
+import { convertToRupiah } from "@/db/helpers/convertRupiah";
 
 export default function Card({ value }: { value: Product }) {
   return (
@@ -15,7 +15,7 @@ export default function Card({ value }: { value: Product }) {
         <div className="font-sans flex flex-col">
           <div className="font-sans flex flex-row justify-between">
             <span>{value.name}</span>
-            <AddWishlist/>
+            <AddWishlist />
           </div>
           <span>{convertToRupiah(value.price)}</span>
         </div>

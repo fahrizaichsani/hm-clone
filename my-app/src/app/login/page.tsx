@@ -17,7 +17,7 @@ export default function Login() {
     });
   };
 
-  const submitForm = (event: FormEvent<HTMLFormElement>) => {
+  const submitForm = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(inputLogin, "<<< ini input login");
   };

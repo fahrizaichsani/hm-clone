@@ -1,7 +1,7 @@
 import { Product } from "@/types";
 import React from "react";
 import Link from "next/link";
-import { convertToRupiah } from "@/helpers/convertRupiah";
+import { convertToRupiah } from "@/db/helpers/convertRupiah";
 
 export default function FeatureProducts({ value }: { value: Product }) {
   return (
