@@ -26,5 +26,4 @@ export class UserModel {
     }) as User | null
     return result
   }
-
 }

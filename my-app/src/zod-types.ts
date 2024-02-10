@@ -7,6 +7,13 @@ export const UserSchema = z.object({
   password: z.string().min(5),
 });
 
+export const UserLoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(5),
+})
+
+export type UserBody = z.infer<typeof UserLoginSchema>
+
 export const ProductSchema = z.object({
   name: z.string(),
   slug: z.string(),
