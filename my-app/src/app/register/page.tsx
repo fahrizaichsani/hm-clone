@@ -21,7 +21,7 @@ export default function Register() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(rawFormData),
-      next: { tags: ["register"] },
+      // next: { tags: ["register"] },
     });
 
     const result = (await res.json()) as MyResponse;

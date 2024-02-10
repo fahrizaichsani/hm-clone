@@ -10,7 +10,7 @@ async function getDataById(slug: string) {
     throw new Error("Failed to fetch data");
   }
 
-  return await res.json() as Product;
+  return await res.json();
 }
 
 export default async function DetailProduct({ params }: DetailProductProps) {

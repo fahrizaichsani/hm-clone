@@ -1,11 +1,43 @@
 import Link from "next/link";
 import React from "react";
+import { MyResponse } from "@/types";
+import { redirect } from "next/navigation";
+import ErrorPopup from "@/components/error-popup";
+import { cookies } from "next/headers";
 
 export default function Login() {
+  async function loginUser(formData: FormData) {
+    "use server";
+
+    const rawFormData = {
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(rawFormData),
+      // next: { tags: ["login"] },
+    });
+
+    const result = (await res.json()) as MyResponse;
+
+    if (!res.ok) {
+      return redirect("/login?error=" + result.error);
+    }
+
+    cookies().set("Authorization", `Bearer ${result.access_token}`)
+    
+    return redirect("/");
+  }
   return (
     <>
       <div className="flex justify-center items-center pt-[50px]">
         <div className="max-w-[769px]">
+          <ErrorPopup />
           <div className="font-sans text-xl font-semibold">MASUK</div>
           <div className="flex w-[720px] gap-[64px] pt-[10px]">
             <div className="flex flex-col gap-[10px]">
@@ -14,7 +46,7 @@ export default function Login() {
                 Selamat datang kembali! Masuk ke akun Anda untuk melakukan
                 Pembayaran yang lebih cepat
               </span>
-              <form>
+              <form action={loginUser}>
                 <div className="flex flex-col pt-[20px]">
                   <span className="text-sm font-semibold">Email*</span>
                   <input

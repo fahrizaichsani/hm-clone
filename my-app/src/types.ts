@@ -35,7 +35,8 @@ export interface User {
 export interface UserInput extends Omit<User, "_id"> {}
 
 //myresponse interface
-export interface MyResponse{
+export interface MyResponse {
   error?: string;
   message?: string;
+  access_token?: string;
 }

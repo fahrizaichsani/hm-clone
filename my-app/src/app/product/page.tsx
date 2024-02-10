@@ -16,7 +16,7 @@ export default function Product(): React.JSX.Element {
     
     const resJson = await res.json();
 
-    setProduct(resJson.data);
+    setProduct(resJson);
   }
 
   useEffect(() => {
