@@ -1,6 +1,6 @@
-import { Product } from "@/db/models/Product";
+import { ProductModel } from "@/db/models/Product";
 
 export async function GET(request: Request) {
-  const products = await Product.getAllProduct();
+  const products = await ProductModel.getAllProduct();
   return Response.json(products);
 }

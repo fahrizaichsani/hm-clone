@@ -1,5 +1,8 @@
+import { ObjectId } from "mongodb";
+
+//product interface
 export interface Product {
-  id: string;
+  _id: ObjectId;
   name: string;
   slug: string;
   description: string;
@@ -12,3 +15,9 @@ export interface Product {
   updatedAt: string;
 }
 
+//slug params interface
+export interface DetailProductProps {
+  params: {
+    slug: string;
+  };
+}

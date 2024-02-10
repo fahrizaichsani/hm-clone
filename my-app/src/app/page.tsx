@@ -7,7 +7,7 @@ import { Product } from "@/types";
 
 
 async function getData(): Promise<Product[]> {
-  const res = await fetch("http://localhost:4003/products");
+  const res = await fetch("http://localhost:3000/api/product");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -28,7 +28,7 @@ interface DiscountBannerProps {
 
 export default async function Home() {
   const data = await getData();
-  const sliceData = await data.slice(0, 10);
+  const sliceData = data.slice(0, 10);
 
   const bannerOne: BannerProps = {
     url: "https://images.unsplash.com/photo-1538329972958-465d6d2144ed?q=80&w=2970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -53,7 +53,7 @@ export default async function Home() {
       <Banner {...bannerTwo} />
       <div className="flex flex-wrap justify-center items-center gap-[8px] pl-[260px] pr-[260px]">
         {sliceData.map((value) => {
-          return <FeatureProducts value={value} key={value.id}/>;
+          return <FeatureProducts value={value} key={value._id}/>;
         })}
       </div>
       <div>

@@ -1,16 +1,10 @@
 import AddWishlist from "@/components/add-to-wishlist";
 import { convertToRupiah } from "@/db/helpers/convertRupiah";
-import { Product } from "@/types";
+import { DetailProductProps, Product } from "@/types";
 import React from "react";
 
-interface DetailProductProps {
-  params: {
-    id: string;
-  };
-}
-
-async function getDataById(id: string): Promise<Product> {
-  const res = await fetch(`http://localhost:4003/products/${id}`);
+async function getDataById(slug: string): Promise<Product> {
+  const res = await fetch(`http://localhost:3000/api/product/${slug}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
@@ -20,7 +14,7 @@ async function getDataById(id: string): Promise<Product> {
 }
 
 export default async function DetailProduct({ params }: DetailProductProps) {
-  const data = await getDataById(params.id);
+  const data = await getDataById(params.slug);
 
   return (
     <>
