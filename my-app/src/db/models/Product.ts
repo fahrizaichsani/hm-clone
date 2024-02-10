@@ -12,7 +12,7 @@ export class ProductModel {
         const productCollection = db.collection("products")
         const result = await productCollection.findOne({
             slug: slug
-        }) as Product
+        }) as Product | null
         return result
     }
 }

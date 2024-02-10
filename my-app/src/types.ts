@@ -21,3 +21,15 @@ export interface DetailProductProps {
     slug: string;
   };
 }
+
+//user interface
+export interface User {
+  _id: ObjectId;
+  name: string;
+  username: string;
+  email: string;
+  password: string;
+}
+
+//user input interface
+export interface UserInput extends Omit<User, "_id"> {}

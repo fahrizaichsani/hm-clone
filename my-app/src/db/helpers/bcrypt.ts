@@ -1,11 +1,12 @@
-const bcrypt = require('bcryptjs');
+import { compareSync, hashSync } from "bcryptjs";
+
 
 const hashPass = (originalPass: string): string => {
-  return bcrypt.hashSync(originalPass, 10);
+  return hashSync(originalPass, 10);
 };
 
 const comparePass = (originalPass: string, hashedPass: string): boolean => {
-  return bcrypt.compareSync(originalPass, hashedPass);
+  return compareSync(originalPass, hashedPass);
 };
 
 export {
