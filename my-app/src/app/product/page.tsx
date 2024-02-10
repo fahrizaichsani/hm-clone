@@ -4,17 +4,19 @@ import Sidebar from "@/components/sidebar";
 import React, { useEffect, useState } from "react";
 import { Product } from "@/types";
 
-export default function Product() {
+export default function Product(): React.JSX.Element {
   const [product, setProduct] = useState<Product[]>();
   async function getData() {
     const res = await fetch("http://localhost:3000/api/product");
-
+    
+    
     if (!res.ok) {
       throw new Error("Failed to fetch data");
     }
+    
+    const resJson = await res.json();
 
-    const resJson: Product[] = await res.json();
-    setProduct(resJson);
+    setProduct(resJson.data);
   }
 
   useEffect(() => {

@@ -1,27 +1,7 @@
-"use client";
-import { UserLogin } from "@/types";
 import Link from "next/link";
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import React from "react";
 
 export default function Login() {
-  const [inputLogin, setInputLogin] = useState<UserLogin>({
-    email: "",
-    password: "",
-  });
-
-  const changeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setInputLogin({
-      ...inputLogin,
-      [name]: value,
-    });
-  };
-
-  const submitForm = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(inputLogin, "<<< ini input login");
-  };
-
   return (
     <>
       <div className="flex justify-center items-center pt-[50px]">
@@ -34,15 +14,13 @@ export default function Login() {
                 Selamat datang kembali! Masuk ke akun Anda untuk melakukan
                 Pembayaran yang lebih cepat
               </span>
-              <form onSubmit={submitForm}>
+              <form>
                 <div className="flex flex-col pt-[20px]">
                   <span className="text-sm font-semibold">Email*</span>
                   <input
                     type="text"
                     className="bg-white border-[1px] border-black w-[328px] h-[48px] outline-black mt-[10px] mb-[30px] p-[8px]"
-                    value={inputLogin.email}
                     name="email"
-                    onChange={changeInput}
                   />
                 </div>
                 <div className="flex flex-col">
@@ -50,9 +28,7 @@ export default function Login() {
                   <input
                     type="password"
                     className="bg-white border-[1px] border-black w-[328px] h-[48px] outline-black mt-[10px] p-[8px]"
-                    value={inputLogin.password}
                     name="password"
-                    onChange={changeInput}
                   />
                 </div>
                 <div className="flex flex-row gap-[30px]">

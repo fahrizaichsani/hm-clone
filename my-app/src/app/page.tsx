@@ -13,7 +13,9 @@ async function getData(): Promise<Product[]> {
     throw new Error("Failed to fetch data");
   }
 
-  return res.json();
+  const resJson = await res.json()
+
+  return resJson.data
 }
 
 interface BannerProps {
@@ -53,7 +55,7 @@ export default async function Home() {
       <Banner {...bannerTwo} />
       <div className="flex flex-wrap justify-center items-center gap-[8px] pl-[260px] pr-[260px]">
         {sliceData.map((value) => {
-          return <FeatureProducts value={value} key={value._id}/>;
+          return <FeatureProducts value={value} key={value._id.toString()}/>;
         })}
       </div>
       <div>

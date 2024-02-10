@@ -1,9 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { User } from "@/types";
+import { MyResponse } from "@/types";
+import { redirect } from "next/navigation";
+import ErrorPopup from "@/components/error-popup";
 
 export default function Register() {
-  async function createUser(formData: FormData): Promise<User> {
+  async function createUser(formData: FormData) {
     "use server";
 
     const rawFormData = {
@@ -19,22 +21,23 @@ export default function Register() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(rawFormData),
-      next: {tags: ["register"]}
+      next: { tags: ["register"] },
     });
 
+    const result = (await res.json()) as MyResponse;
+
     if (!res.ok) {
-      throw new Error("Failed to fetch data");
+      return redirect("/register?error=" + result.error);
     }
 
-    const result = await res.json() as User
-
-    return result
+    return redirect("/login");
   }
 
   return (
     <>
       <div className="flex justify-center items-center pt-[50px]">
         <div className="max-w-[769px]">
+        <ErrorPopup/>
           <div className="font-sans text-xl font-semibold">
             BERGABUNGLAH DENGAN KAMI
           </div>

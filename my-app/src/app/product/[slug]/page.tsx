@@ -3,7 +3,7 @@ import { convertToRupiah } from "@/db/helpers/convertRupiah";
 import { DetailProductProps, Product } from "@/types";
 import React from "react";
 
-async function getDataById(slug: string): Promise<Product> {
+async function getDataById(slug: string) {
   const res = await fetch(`http://localhost:3000/api/product/${slug}`);
 
   if (!res.ok) {

@@ -3,5 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const products = await ProductModel.getAllProduct();
-  return NextResponse.json(products);
+  return NextResponse.json({
+    data: products,
+  });
 }
