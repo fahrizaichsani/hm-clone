@@ -5,11 +5,11 @@ import React from "react";
 
 interface DetailProductProps {
   params: {
-    id: number;
+    id: string;
   };
 }
 
-async function getDataById(id: number): Promise<Product> {
+async function getDataById(id: string): Promise<Product> {
   const res = await fetch(`http://localhost:4003/products/${id}`);
 
   if (!res.ok) {

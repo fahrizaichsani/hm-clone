@@ -9,7 +9,7 @@ import { Product } from "@/types";
 export default function Product() {
   const [product, setProduct] = useState<Product[]>()
   async function getData() {
-    const res = await fetch("http://localhost:4003/products");
+    const res = await fetch("http://localhost:3000/api/product");
   
     if (!res.ok) {
       throw new Error("Failed to fetch data");
@@ -18,6 +18,8 @@ export default function Product() {
     const resJson: Product[] = await res.json();
     setProduct(resJson)
   }
+
+  
   
   useEffect(() => {
     getData()
@@ -38,7 +40,7 @@ export default function Product() {
         </div>
         <div className="flex flex-wrap gap-[4px] ml-[80px]">
           {product?.map((value) => {
-            return <Card value={value} key={value._id}/>;
+            return <Card value={value} key={value.id}/>;
           })}
         </div>
       </div>
