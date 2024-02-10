@@ -1,7 +1,36 @@
 import React from "react";
 import Link from "next/link";
+import { User } from "@/types";
 
 export default function Register() {
+  async function createUser(formData: FormData): Promise<User> {
+    "use server";
+
+    const rawFormData = {
+      name: formData.get("name"),
+      username: formData.get("username"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+
+    const res = await fetch("http://localhost:3000/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(rawFormData),
+      next: {tags: ["register"]}
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+
+    const result = await res.json() as User
+
+    return result
+  }
+
   return (
     <>
       <div className="flex justify-center items-center pt-[50px]">
@@ -20,19 +49,29 @@ export default function Register() {
                 mendaftar. Jika anda memerlukan bantuan, silahkan hubungi kami
                 di 1500527 atau melalui alamat email info.id@hindo.co.id.
               </span>
-              <form>
+              <form action={createUser}>
                 <div className="flex flex-col pt-[20px]">
-                  <span className="text-sm font-semibold">Usename*</span>
+                  <span className="text-sm font-semibold">Name*</span>
                   <input
                     type="text"
                     className="bg-white border-[1px] border-black w-[328px] h-[48px] outline-black mt-[10px] mb-[30px] p-[8px]"
+                    name="name"
+                  />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-sm font-semibold">Username*</span>
+                  <input
+                    type="text"
+                    className="bg-white border-[1px] border-black w-[328px] h-[48px] outline-black mt-[10px] mb-[30px] p-[8px]"
+                    name="username"
                   />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-sm font-semibold">Email*</span>
                   <input
-                    type="password"
+                    type="text"
                     className="bg-white border-[1px] border-black w-[328px] h-[48px] outline-black mt-[10px] mb-[30px] p-[8px]"
+                    name="email"
                   />
                 </div>
                 <div className="flex flex-col">
@@ -40,6 +79,7 @@ export default function Register() {
                   <input
                     type="password"
                     className="bg-white border-[1px] border-black w-[328px] h-[48px] outline-black mt-[10px] p-[8px]"
+                    name="password"
                   />
                 </div>
                 <div className="flex flex-row gap-[20px]">
