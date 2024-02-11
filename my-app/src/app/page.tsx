@@ -6,7 +6,7 @@ import FeatureProducts from "@/components/featured-products";
 import { Product } from "@/types";
 
 async function getData(): Promise<Product[]> {
-  const res = await fetch(process.env.BASE_URL + "/api/product");
+  const res = await fetch(process.env.NEXT_PUBLIC_BASE_URL + "/api/product");
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
