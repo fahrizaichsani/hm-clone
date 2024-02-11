@@ -7,7 +7,7 @@ import { Product } from "@/types";
 export default function Product(): React.JSX.Element {
   const [product, setProduct] = useState<Product[]>();
   async function getData() {
-    const res = await fetch("http://localhost:3000/api/product");
+    const res = await fetch(process.env.BASE_URL + "/api/product");
     
     
     if (!res.ok) {
