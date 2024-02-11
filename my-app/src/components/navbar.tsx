@@ -1,6 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import imageLogo from "/public/JualBajuNih-2.png";
+import { cookies } from "next/headers";
+import LogoutButton from "./logout-button";
+import LoginButton from "./login-button";
+import ButtonChoose from "./button-choose";
 
 export default function Navbar() {
   return (
@@ -18,11 +22,7 @@ export default function Navbar() {
             </Link>
           </div>
           <div className="flex gap-5">
-            <Link href={"/login"}>
-              <button>
-                <span>Masuk</span>
-              </button>
-            </Link>
+            <ButtonChoose />
             <span>Indonesia</span>
             <Link href={"/wishlist"}>
               <span>Favorit</span>
