@@ -4,7 +4,7 @@ import { DetailProductProps, Product } from "@/types";
 import React from "react";
 
 async function getDataById(slug: string) {
-  const res = await fetch(`${process.env.BASE_URL}/api/product/${slug}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/product/${slug}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
