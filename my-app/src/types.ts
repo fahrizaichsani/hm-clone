@@ -15,6 +15,21 @@ export interface Product {
   updatedAt: string;
 }
 
+//wishlist interface
+export interface Wishlist {
+  _id: ObjectId;
+  userId: string;
+  productId: string;
+}
+
+//wishlist input interface
+export interface WishlistInput extends Omit<Wishlist, "_id"> {}
+
+//product[] response with data
+export interface ResponseProduct {
+  data: Product[];
+}
+
 //slug params interface
 export interface DetailProductProps {
   params: {
