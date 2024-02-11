@@ -6,7 +6,7 @@ import { ZodError } from "zod";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const idUser = request.headers.get ("x-userId") as string
+    const idUser = request.headers.get("x-userId") as string;
     const wishlist = await WishlistModel.addWishlist({
       productId: body.productId,
       userId: idUser,
@@ -41,8 +41,9 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   try {
-    const idUser = request.headers.get ("x-userId") as string
+    const idUser = request.headers.get("x-userId") as string;
     const wishlist = await WishlistModel.getAllWishlist(idUser);
+
     return NextResponse.json({ data: wishlist });
   } catch (error: any) {
     if (error instanceof ZodError) {

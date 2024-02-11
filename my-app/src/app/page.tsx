@@ -5,7 +5,6 @@ import Banner from "@/components/banner";
 import FeatureProducts from "@/components/featured-products";
 import { Product } from "@/types";
 
-
 async function getData(): Promise<Product[]> {
   const res = await fetch("http://localhost:3000/api/product");
 
@@ -13,9 +12,9 @@ async function getData(): Promise<Product[]> {
     throw new Error("Failed to fetch data");
   }
 
-  const resJson = await res.json()
+  const resJson = await res.json();
 
-  return resJson.data
+  return resJson.data;
 }
 
 interface BannerProps {
@@ -55,7 +54,7 @@ export default async function Home() {
       <Banner {...bannerTwo} />
       <div className="flex flex-wrap justify-center items-center gap-[8px] pl-[260px] pr-[260px]">
         {sliceData.map((value) => {
-          return <FeatureProducts value={value} key={value._id.toString()}/>;
+          return <FeatureProducts value={value} key={value._id.toString()} />;
         })}
       </div>
       <div>
@@ -63,7 +62,7 @@ export default async function Home() {
           href={"/product"}
           className="flex justify-center items-center pb-[30px]"
         >
-          <button className="font-sans">See all</button>
+          <button className="font-sans text-red-400">See all</button>
         </Link>
       </div>
     </>

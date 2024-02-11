@@ -5,9 +5,26 @@ import { ObjectId } from "mongodb";
 export class WishlistModel {
   static async getAllWishlist(idUser: string) {
     const wishlistCollection = db.collection("wishlists");
-    const result = (await wishlistCollection.find({
-      userId: new ObjectId(idUser)
-    }).toArray()) as Wishlist[];
+
+    const result = await wishlistCollection
+      .aggregate([
+        { $match: { userId: new ObjectId(idUser) } },
+        {
+          $lookup: {
+            from: "products",
+            localField: "productId",
+            foreignField: "_id",
+            as: "Product",
+          },
+        },
+        {
+          $set: { Product: { $first: '$Product' } }
+      },
+      ])
+      .toArray();
+
+    console.log(result, "INI RESULT WISHLIST");
+
     return result;
   }
 
@@ -22,13 +39,13 @@ export class WishlistModel {
   static async addWishlist(body: WishlistInput) {
     const wishlistCollection = db.collection("wishlists");
     const result = await wishlistCollection.insertOne({
-        userId: new ObjectId(body.userId),
-        productId: new ObjectId(body.productId)
+      userId: new ObjectId(body.userId),
+      productId: new ObjectId(body.productId),
     });
 
     return {
       _id: result.insertedId,
       ...body,
-    } as Wishlist
+    } as Wishlist;
   }
 }

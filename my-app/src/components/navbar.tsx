@@ -25,7 +25,7 @@ export default function Navbar() {
             <ButtonChoose />
             <span>Indonesia</span>
             <Link href={"/wishlist"}>
-              <span>Favorit</span>
+              <span className="text-red-400">Favorit</span>
             </Link>
             <span>Tas Belanja</span>
           </div>
